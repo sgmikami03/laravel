@@ -1,5 +1,5 @@
 @csrf
-<div class='mg-form'>
+<div class='md-form'>
   <label>タイトル</label>
   <input type="text" name='title' class='form-control' required value="{{ old('title') }}">
 </div>
