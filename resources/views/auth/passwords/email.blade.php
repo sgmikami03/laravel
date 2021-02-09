@@ -30,7 +30,7 @@
                   <input type="text" id="email" name='email' class='form-control' required>
                 </div>
                 
-                <button class="btn btn-block blue-gradient mt-2 mb-2" type="sublit">メール送信</button>
+                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">メール送信</button>
 
               </form>
             </div>
