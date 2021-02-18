@@ -6,7 +6,7 @@
         >
           <i class="fas fa-heart mr-1" :class="{'red-text': this.isLikedBy}"></i>
         </button>
-        10
+        {{ countLikes }}
     </div>
 </template>
 
@@ -17,10 +17,15 @@
         type: Boolean,
         default: false
       },
+      initialCountLikes: {
+        type: Number,
+        default: 0,
+      },
     },
     data: function(){
       return {
-        isLikedBy: this. initialIsLikedBy,
+        isLikedBy: this.initialIsLikedBy,
+        countLikes: this.initialCountLikes,
       }
     }
   }
