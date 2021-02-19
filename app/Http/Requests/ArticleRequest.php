@@ -39,10 +39,10 @@ class ArticleRequest extends FormRequest
     }
 
     public function passedValidation()
-    {
-        $this->tags = collect(json_decode($this->tags))
+    {   
+          $this->tags = collect(json_decode($this->tags))
           ->slice(0, 5)
-          ->map(function($requestTag){
+          ->map(function ($requestTag) {
               return $requestTag->text;
           });
     }
