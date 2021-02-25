@@ -15,8 +15,33 @@ class UserController extends Controller
         return view('users.show', [
             'user' => $user,
         ]);
-
-        print($user->followers);
-        //print($user->isFollowedBy(Auth::user()));
     }
+
+    public function follow(Request $request, String $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        if ($user->id === $request->user()->id) 
+        {
+            return about('404', 'Cannot follow yourserf');
+        }
+
+        $request->user()->followings()->detach($user);
+        $request->user()->followings()->attach($user);
+
+        return['name' => $name];
+    }
+
+    public function unfollow(Request $request, String $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        if ($user->id === $request->user()->id) 
+        {
+            return about('404', 'Cannot follow yourserf');
+        }
+
+        $request->user()->followings()->detach($user);
+        return['name' => $name];
+        }
 }
