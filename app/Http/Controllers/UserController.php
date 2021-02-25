@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,5 +15,8 @@ class UserController extends Controller
         return view('users.show', [
             'user' => $user,
         ]);
+
+        print($user->followers);
+        //print($user->isFollowedBy(Auth::user()));
     }
 }

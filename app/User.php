@@ -5,7 +5,7 @@ namespace App;
 use App\Mail\BareMail;
 use App\Notifications\PasswordResetNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -45,15 +45,15 @@ class User extends Authenticatable
         $this->notify(new PasswordResetNotification($token, new BareMail()));
     }
 
-    public function followers():BelongsToMany
+    public function followers():belongsToMany
     {
-        return $htis->belongsToMany('App\User', 'follows', 'followee_id', 'follower_id')->withTimestamps();
+        return $this->belongsToMany('App\User', 'follows', 'followee_id', 'follower_id')->withTimestamps();
     }
 
-    public function isFollowedBy(?User $user):bool
+    public function isFollowedBy(?User $user): bool
     {
         return $user
-          ?(bool)$this->followers->where('id', $user->id)->count()
-          :false;
+            ? (bool)$this->followers->where('id', $user->id)->count()
+            : false;
     }
 }

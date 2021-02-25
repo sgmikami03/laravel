@@ -15,24 +15,30 @@
 
 <script>
 export default {
+    props:{
+        initialIsFollowedBy:{
+            type: Boolean,
+            default: false,
+        }
+    },
     data() {
         return {
-            isFollowBy: false,
+            isFollowedBy: this.initialIsFollowedBy,
         }
     },
     computed: {
         buttonColor(){
-            return this.isFollowBy
+            return this.isFollowedBy
               ?'bg-primary text-white'
               :'bg-white'
         },
         buttonIcon(){
-            return this.isFollowBy
+            return this.isFollowedBy
             ?'fas fa-user-check'
             :'fas fa-user-plus'
         },
         buttonText(){
-            return this.isFollowBy
+            return this.isFollowedBy
             ?'フォロー中'
             :'フォロー'
         }
