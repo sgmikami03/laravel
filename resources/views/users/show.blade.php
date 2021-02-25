@@ -28,10 +28,10 @@
             <div class="card-body">
               <div class="card-text">
                 <a href="" class="text-muted">
-                10フォロー
+                {{ $user->count_followings }}フォロー
                 </a>
                 <a href="" class="text-muted">
-                10フォロワー
+                {{ $user->count_followings }}フォロワー
                 </a>
               </div>
             </div>
