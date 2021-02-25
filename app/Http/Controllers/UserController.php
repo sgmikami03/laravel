@@ -45,5 +45,16 @@ class UserController extends Controller
 
         $request->user()->followings()->detach($user);
         return['name' => $name];
-        }
+    }
+
+    public function likes(String $name)
+    {
+        $user = User::where('name', $name)->first();
+        $articles = $user->likes->sortByDesc('created_at');
+
+        return view('users.likes', [
+            'user' => $user,
+            'articles' => $articles
+        ]);
+    }
 }
