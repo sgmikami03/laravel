@@ -28,7 +28,7 @@ Route::prefix('articles')->name('articles.')->group(function(){
 });
 
 Route::prefix('register')->name('register.')->group(function(){
-    Route::get('/{provider}', 'RegisterController@showProviderRegisterForm')->name('{provider}');
+    Route::get('/{provider}', 'Auth\RegisterController@showProviderRegisterForm')->name('{provider}');
 });
 
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');

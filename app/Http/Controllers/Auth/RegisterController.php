@@ -76,11 +76,11 @@ class RegisterController extends Controller
     public function showProviderRegisterForm(Request $request, string $provider)
     {
         $token = $request->token;
-        $providerUser = Socialite::driver($provider)->userFormToken($token);
+        $providerUser = Socialite::driver($provider)->userFromToken($token);
 
         return view('auth.social_register',[
             'provider' => $provider,
-            'email' => $providerUser->getEmail,
+            'email' => $providerUser->getEmail(),
             'token' => $token,
         ]);
     }
