@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::prefix('login')->name('login.')->group(function(){
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
+    Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
 });
 
 Route::get('/', 'ArticleController@index')->name('articles.index');
@@ -24,6 +25,10 @@ Route::resource('/articles', 'ArticleController')->only(['show']);
 Route::prefix('articles')->name('articles.')->group(function(){
     Route::put('/{article}/like', 'ArticleController@like')->name('like')->middleware('auth');
     Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike')->middleware('auth');
+});
+
+Route::prefix('register')->name('register.')->group(function(){
+    Route::get('/{provider}', 'RegisterController@showProviderRegisterForm')->name('{provider}');
 });
 
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
